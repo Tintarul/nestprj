@@ -6,6 +6,6 @@
 
 Am folosit ambele NPM si YARN din apacate
 
-<img src="https://software-ieftin.ro/dd1.png">
+<img src="https://software-ieftin.ro/dd1.PNG">
 <br>
-<img src="https://software-ieftin.ro/dd2.png">
+<img src="https://software-ieftin.ro/dd2.PNG">
