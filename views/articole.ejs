@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<div style="max-width: 40%;">
+  
+  <% if(typeof msg !== 'undefined') { %>
+    <div class="alert alert-success">
+        <%= msg %>
+    </div>
+  <% } %>
+
+  <br><br>
+  <a href="/articole/form" class="btn btn-primary">Adauga articol nou</a>
+  <form action="/search"></form>
+  <br><br>
+
+  <% ArticoleGasite.forEach(function(articol){ %>
+
+      <div class="card card-side bg-base-100 shadow-xl" style="box-shadow: inset 1px 1px 1px 1px;">
+          <div class="card-body">
+            <h2 class="card-title"><%= articol.title %></h2>
+            <p><%= articol.desc %></p>
+            <div class="card-actions justify-end">
+              <a href="/articole/delete/<%= articol._id %>" class="btn btn-primary">Sterge</a>
+            </div>
+          </div>
+      </div>
+      <br><br>
+
+  <% }) %>
+
+</div>
+
+
+<%- include('partials/footer') %>

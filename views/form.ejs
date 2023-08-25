@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+  <form class="w-full max-w-sm" method="POST" action="/articole" >
+
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-bold mb-2">Titlu articol</label>
+      <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg">
+    </div>
+    
+    <!-- Tailwind cu daisyUI -->
+    
+    <div class="mb-4">
+      <label for="desc" class="block text-sm font-bold mb-2">Descriere</label>
+      <textarea type="desc" id="desc" name="desc" class="w-full px-3 py-2 border rounded-lg"></textarea>
+    </div>
+
+    <!-- Tailwind cu daisyUI -->
+
+    <div class="mb-6">
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700">Trimite</button>
+    </div>
+  </form>
+
+<%- include('partials/footer') %>
