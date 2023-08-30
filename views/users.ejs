@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<div style="max-width: 40%;">
+  
+  <% if(typeof msg !== 'undefined') { %>
+    <div class="alert alert-success">
+        <%= msg %>
+    </div>
+  <% } %>
+
+  <br><br>
+  <a href="/user/form" class="btn btn-primary">Adauga un user nou</a>
+  <br><br>
+
+  <% Utilizatori.forEach(function(user){ %>
+
+      <div class="card card-side bg-base-100 shadow-xl" style="box-shadow: inset 1px 1px 1px 1px;">
+          <div class="card-body">
+            <h2 class="card-title"><%= user.displayname %></h2>
+            <p><%= user.email %></p>
+            <div class="card-actions justify-end">
+              <a href="/user/delete/<%= user.id %>" class="btn btn-primary">Sterge</a>
+            </div>
+          </div>
+      </div>
+      <br><br>
+
+  <% }) %>
+
+</div>
+
+
+<%- include('partials/footer') %>
