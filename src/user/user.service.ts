@@ -29,6 +29,14 @@ export class UserService {
     }
   }
 
+  async findUserByUsername(username: string): Promise<User | undefined> {
+    try {
+      return await this.userRepository.findOneBy({username});
+    } catch (error) {
+      throw new NotFoundException(`User with username ${username} not found.`);
+    }
+  }
+
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     try {
       const user = await this.findUser(id); // Check if the user exists

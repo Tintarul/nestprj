@@ -8,8 +8,14 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createUser(createUserDto);
+  async findOrCreate(@Body() createUserDto: CreateUserDto, @Res() response) {
+    const usersResponse = await this.userService.findUserByUsername(createUserDto.username);
+    if (!usersResponse) {
+      this.userService.createUser(createUserDto);
+    } else {
+      this.userService.updateUser(usersResponse.id, createUserDto);
+    }
+    return response.status(HttpStatus.OK).render('userForm', {user: usersResponse});
   }
 
   @Get()
@@ -26,18 +32,13 @@ export class UserController {
   }
 
   @Get(':id')
-  @Render('users')
+  @Render('userForm')
   async findOne(@Param('id') id: string, @Res() response) {
     const usersResponse = await this.userService.findUser(+id);
-    return response.status(HttpStatus.OK).render('users', {Utilizatori: usersResponse});
+    return response.status(HttpStatus.OK).render('userForm', {user: usersResponse});
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.updateUser(+id, updateUserDto);
-  }
-
-  @Delete(':id')
+  @Get('/delete/:id')
   remove(@Param('id') id: string) {
     return this.userService.removeUser(+id);
   }

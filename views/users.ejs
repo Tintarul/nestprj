@@ -14,7 +14,7 @@
 
   <% Utilizatori.forEach(function(user){ %>
 
-      <div class="card card-side bg-base-100 shadow-xl" style="box-shadow: inset 1px 1px 1px 1px;">
+      <div onclick="window.location.href='/user/<%= user.id %>'" class="card card-side bg-base-100 shadow-xl" style="box-shadow: inset 1px 1px 1px 1px; cursor: pointer;">
           <div class="card-body">
             <h2 class="card-title"><%= user.displayname %></h2>
             <p><%= user.email %></p>
