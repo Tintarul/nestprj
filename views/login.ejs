@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+  <form class="w-full max-w-sm" method="POST" action="/user/login" >
+    <% if(typeof message !== "undefined") { %>
+      <div class="alert alert-success">
+        <%= message %>
+      </div>
+      <br><br>
+      <hr>
+      <br><br>
+      <% } %>
+    <div class="mb-4">
+      <input type="text" id="username" name="username" placeholder="Nume Utilizator" class="w-full px-3 py-2 border rounded-lg" <% if(typeof user != 'undefined' && user.username) { %> value="<%= user.username %>" disabled <% } %> >
+    </div>
+
+    <div class="mb-4">
+      <input type="password" id="password" name="password" placeholder="Parola" class="w-full px-3 py-2 border rounded-lg" <% if(typeof user != 'undefined' && user.password) { %> value="<%= user.password %>" <% } %>>
+    </div>
+
+    <div class="mb-6">
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700">Trimite</button>
+    </div>
+  </form>
+
+<%- include('partials/footer') %>

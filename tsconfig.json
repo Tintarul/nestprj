@@ -20,5 +20,6 @@
     //Astea sunt adaugate de mine
     "strict": true,
     
-  }
+  },
+  "include": ["src/**/*.ts", "typings/**/*.d.ts"]
 }

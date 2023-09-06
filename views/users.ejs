@@ -3,29 +3,69 @@
 <div style="max-width: 40%;">
   
   <% if(typeof msg !== 'undefined') { %>
+  </br>
     <div class="alert alert-success">
         <%= msg %>
     </div>
   <% } %>
 
+  <% if(typeof message !== 'undefined') { %>
+  </br>
+    <div class="alert alert-success">
+        <%= message %>
+    </div>
+  <% } %>
+  
+  <% if(typeof myuser !== "undefined") { %>
+  <br>
+    <h1>Esti autentificat folosind contul <%= myuser.username %></h1>
+  <% } %>
+
   <br><br>
   <a href="/user/form" class="btn btn-primary">Adauga un user nou</a>
+  <a href="/user/login" class="btn btn-primary">Intra in cont</a>
+  <a href="/user/logout" class="btn btn-primary">Iesi din cont</a>
+  <br><br>
+  <hr>
+  <br>
+  <a href="/user/protected" class="btn btn-primary">Pagina protejata</a>
+  <a href="/user/" class="btn btn-primary">Refresh</a>
   <br><br>
 
-  <% Utilizatori.forEach(function(user){ %>
+  <% 
+  if(typeof Utilizatori !== "undefined"){
+  Utilizatori.forEach(function(user){ %>
 
       <div onclick="window.location.href='/user/<%= user.id %>'" class="card card-side bg-base-100 shadow-xl" style="box-shadow: inset 1px 1px 1px 1px; cursor: pointer;">
           <div class="card-body">
             <h2 class="card-title"><%= user.displayname %></h2>
             <p><%= user.email %></p>
             <div class="card-actions justify-end">
-              <a href="/user/delete/<%= user.id %>" class="btn btn-primary">Sterge</a>
+              <a onclick="deleteUser('<%= user.id %>')" class="btn btn-primary">Sterge</a>
             </div>
           </div>
       </div>
       <br><br>
+      <script>
+        function deleteUser(id) {
+          fetch('/user/' + id, {
+            method: 'DELETE' //Metoda delete
+          }).then(function(response) {
+            //Cand primim raspuns
+            if(response.ok) {
+              //Daca raspunsul este ok reload
+              window.location.reload();
+            } else {
+              //Daca nu, afisam un dialog cu eroarea
+              response.json().then(function(data) {
+                alert(data.error);
+              });
+            }
+          });
+        }
+      </script>
 
-  <% }) %>
+  <% })} %>
 
 </div>
 
